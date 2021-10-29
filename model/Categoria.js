@@ -1,20 +1,11 @@
-const mongoose = require('mongoose') //02
+const mongoose = require('mongoose') 
 
-const Schema = mongoose.Schema //02
+const Schema = mongoose.Schema 
 
-const Categoria = new Schema ({ //02
-    codigo: {
-        type: String,
-        required: true
-    },
-    descricao: {
-        type: String,
-        required: true
-    },
-    data: {
-        type: Date,
-        required: Date.now
-    }
+const Categoria = new Schema ({
+    nome: { type: String,required: true},
+    slug: { type: String,required: true},
+    date: { type: Date,default: Date.now}
 })
 
-mongoose.model("categorias", Categoria) //02
+mongoose.model("categorias", Categoria)
