@@ -1,4 +1,4 @@
-# :construction: Em Desenvolvimento :construction:
+# :cop::hand::construction: Em Desenvolvimento :construction::cop::hand:
 # Projeto de um blog com acesso de administrador
 ## Técnologias Utilizadas
 
@@ -18,4 +18,4 @@
 - [ ] confiante
 
 
-# :construction: Em Desenvolvimento :construction:
+# :cop::hand::construction: Em Desenvolvimento :construction::cop::hand:
