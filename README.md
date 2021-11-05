@@ -1,6 +1,6 @@
 ## :construction: Em Desenvolvimento :construction:
 
-## Curso Blog com acesso de administrador
+## Curso Node JS Blog com acesso de administrador
 
 ### Caixa de seleção 
 - [x] Aula 1
