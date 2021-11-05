@@ -5,16 +5,17 @@
 {{/each}}
 <div class="card">
     <div class="card-body">
-        <h3>Nova Peça</h3>
-    <form action="/admin/postagens/nova" method="POST">
+        <h3>Editar Postagem</h3>
+    <form action="/admin/postagens/edit" method="POST">
+        <input type="hidden" value="{{postagens._id}}" name="id">
         <label for="titulo">Título</label>
-        <input type="text" class="form-control" id="titulo" name="titulo" placeholder="titulo" required>
+        <input type="text" class="form-control" id="titulo" value="{{postagens.titulo}}" name="titulo" required>
         <label for="slug">Slug</label>
-        <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug da categoria" required>
+        <input type="text" class="form-control" id="slug" name="slug" value="{{postagens.slug}}" required>
         <label for="descricao">Descrição</label>
-        <input type="text" class="form-control" id="descricao" name="descricao" placeholder="descricao" required>
+        <input type="text" class="form-control" id="descricao" name="descricao" value="{{postagens.descricao}}" required>
         <label for="conteudo">Conteúdo</label>
-        <textarea type="text" class="form-control" id="conteudo" name="conteudo" placeholder="conteudo" required></textarea>
+        <textarea type="text" class="form-control" id="conteudo" name="conteudo"  required>{{postagens.conteudo}}</textarea>
         <label for="categoria">Categoria</label>
         <select class="custom-select" id="categoria" name="categoria">
             {{#each categorias}}
@@ -24,7 +25,7 @@
             {{/each}}
         </select>        
         <br>
-        <button type="submit" class="btn btn-success mt-4">Criar peça</button> 
+        <button type="submit" class="btn btn-success mt-4">Editar postagem</button> 
         </form>
     </div>
 </div>

@@ -3,13 +3,13 @@
 {{else}}
 
 {{/each}}
-<h3>Nova Categoria</h3>
+<h3>Liberação</h3>
 <div class="card">
     <div class="card-body">
     <form action="/admin/categorias/nova" method="POST">
-    <label for="nome">Nome</label>
+    <label for="nome">Código</label>
         <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome da categoria">
-    <label for="slug">Slug</label>
+    <label for="slug">Descrição</label>
         <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug da categoria">
         <br>
     <button type="submit" class="btn btn-warning">Adcionar Categoria</button> 

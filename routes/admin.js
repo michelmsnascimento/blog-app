@@ -117,12 +117,12 @@ router.post("/categorias/edit", (req, res) => {
 })
 
 //rota para deletar categoria
-router.post("/categorias/deletar", (req, res) => {
-    Categoria.remove({ _id: req.body.id }).then(() => {
-        req.flash("success_msg", "Categoria deletada com sucesso.")
+router.get("/categorias/delete/:id", (req, res) => {
+    Categoria.remove({ _id: req.params.id }).then(() => {
+        req.flash("success_msg", "Postagem deletada com sucesso.")
         res.redirect("/admin/categorias")
     }).catch((err) => {
-        req.flash("error_msg", "Erro ao editar a categoria")
+        req.flash("error_msg", "Erro ao deletar a Postagem")
         req.redirect("/admin/categorias")
     })
 })
@@ -180,6 +180,78 @@ router.post('/postagens/nova',(req, res) => {
     }
 })
 
+//rota para editar postagens
+router.get('/postagens/edit/:id', (req, res) => {
+    Postagem.findOne({_id:req.params.id}).lean().then((postagens) => {
+        Categoria.find().lean().then((categorias) => {
+            res.render("admin/editpostagens", {categorias:categorias, postagens:postagens})    
+        }).catch((err) => {
+            req.flash("error_msg", "Houve um erro ao listar as categorias")
+            res.redirect("/admin/postagens")
+        })
+    }).catch((e) => {
+        console.log(e);
+        req.flash("error_msg", "Houve um erro ao o formulário de edição")
+        res.redirect("/admin/postagens")
+    })
+})
+
+
+router.post("/postagens/edit", (req, res) => {
+    Postagem.findOne({ _id: req.body.id }).then((postagem) => {
+        let erros = []
+
+        if (!req.body.titulo || typeof req.body.titulo == undefined || req.body.titulo == null) {
+            erros.push({ texto: "Titulo invalido" })
+        }
+        if (!req.body.descricao || typeof req.body.descricao == undefined || req.body.descricao == null) {
+            erros.push({ texto: "Slug invalido" })
+        }
+        if (req.body.titulo.length < 2) {
+            erros.push({ texto: "Título muito pequeno" })
+        }
+        if (erros.length > 0) {
+            Postagem.findOne({ _id: req.body.id }).lean().then((postagens) => {
+                res.render("admin/editpostagens", { postagens: postagens})
+            }).catch((err) => {
+                req.flash("error_msg", "Erro ao pegar os dados")
+                res.redirect("admin/postagens")
+            })
+            
+        } else {
+
+
+            postagem.titulo = req.body.titulo,
+            postagem.descricao = req.body.descricao,
+            postagem.conteudo = req.body.conteudo,
+            postagem.categoria = req.body.categoria,
+            postagem.slug = req.body.slug
+
+            postagem.save().then(() => {
+                req.flash("success_msg", "Postagem editada com sucesso!")
+                res.redirect("/admin/postagens")
+            }).catch((err) => {
+                req.flash("error_msg", "Erro ao salvar a edição da postagem")
+                res.redirect("admin/postagens")
+            })
+
+        }
+    }).catch((err) => {
+        req.flash("error_msg", "Erro ao editar a categoria")
+        req.redirect("/admin/postagens")
+    })
+})
+
+//rota para deletar postagem
+router.get("/postagens/delete/:id", (req, res) => {
+    Postagem.remove({ _id: req.params.id }).then(() => {
+        req.flash("success_msg", "Postagem deletada com sucesso.")
+        res.redirect("/admin/postagens")
+    }).catch((err) => {
+        req.flash("error_msg", "Erro ao deletar a Postagem")
+        req.redirect("/admin/postagens")
+    })
+})
 
 module.exports = router 
 //01 exporta para o servidor o router da admin
