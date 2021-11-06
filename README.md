@@ -49,9 +49,9 @@
 - [x] Aula 44
 - [x] Aula 45
 - [x] Aula 46
-- [x] Aula 47
-- [x] Aula 48
-- [ ] Aula 49
+- [x] Aula 47 
+- [x] Aula 48 CRUD concluido
+- [ ] Aula 49 Estilização
 - [ ] Aula 50
 - [ ] Aula 51
 - [ ] Aula 52
